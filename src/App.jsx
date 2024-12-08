@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 import BirthdayCard from './BirthdayCard';
+import data from '../public/data';
+
 
 function App() {
-  // const [people,setPeople] = useState(data);
+  const [people,setPeople] = useState(data);
   // console.log('data', people);
   
 
@@ -12,8 +14,8 @@ function App() {
      <main>
       <section className='container'>
           <h2 > Birthday Today</h2>
-            <BirthdayCard  />
-         
+            <BirthdayCard data={people} />
+         <button onClick={()=> setPeople([])}>Clear all!!</button>
         </section>
     </main>
   )

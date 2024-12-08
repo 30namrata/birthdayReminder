@@ -1,11 +1,11 @@
 import React from 'react';
-import data from '../public/data';
+// import data from '../public/data';
 import './index.css'
 
 
-function BirthdayCard() {
+function BirthdayCard({data}) {
   const today = new Date(); // Ensure this is correctly initialized as a Date object
-  console.log(today);
+  console.log(data);
   
   const todayBirthdays = data.filter(person => {
     const dob = new Date(person.dob); // Convert dob string to Date object
@@ -15,23 +15,23 @@ function BirthdayCard() {
   });
 
   return (
-    <div className="container mt-4">
-      <h3 className="text-center mb-4">{todayBirthdays.length >0 ?todayBirthdays.length:"" } Today's Birthday</h3>
-      <div className="row justify-content-center">
+    <>
+        {todayBirthdays.length >0 &&
+          <h3 className="text-center mb-4">{ todayBirthdays.length } Today's Birthday</h3>
+        }
         {data.map((person) => {
             const { id, name, image, dob } = person;
             return (
             <article key={id} className='person'>
             <img src={image} alt={name} />
-            <div>
-              <h4>{name}</h4>
+            <div className='left-align'>
+              <h4 >{name}</h4>
               <p> {`Age: ${today.getFullYear() - new Date(dob).getFullYear()} years`}</p>
             </div>
           </article>);
         })
         }
-      </div>
-    </div>
+        </>
   );
 }
 
